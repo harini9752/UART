@@ -1,0 +1,20 @@
+ always@(posedge clk)
+ begin
+  if(state == idle)
+    begin 
+    count <= 0;
+    end
+  else begin
+    if(count == wait_count)
+       begin
+        bitDone <= 1'b1;
+        count   <= 0;  
+       end
+    else
+       begin
+       count   <= count + 1;
+       bitDone <= 1'b0;  
+      end    
+  end
+ 
+ end
