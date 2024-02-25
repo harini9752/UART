@@ -1,0 +1,19 @@
+module top(
+    input clk,
+    input start,
+    input [7:0] txin,
+    output reg tx, 
+    input rx,
+    output [7:0] rxout,
+    output rxdone, txdone
+    );
+    
+ parameter clk_value = 100_000;
+ parameter baud = 9600;
+ 
+ parameter wait_count = clk_value / baud;
+ 
+ reg bitDone = 0;
+ integer count = 0;
+ parameter idle = 0, send = 1, check = 2;
+ reg [1:0] state = idle;
